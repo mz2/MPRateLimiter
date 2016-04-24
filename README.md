@@ -1,9 +1,11 @@
 # MPRateLimiter ![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)
 A synchronous rate limiter for Swift. 
 
-- The current thread waits for the closure's rate limited execution (as opposed to the closure being dispatching into the future after potential throttling rate limit induced delay has passed). If you don't want this behaviour, you may want to try something like [DORateLimit](https://github.com/danydev/DORateLimit) instead.
+- The current thread waits for the closure's rate limited execution.
 - Public interface is thread safe.
 - Allows for rethrowing errors thrown by the rate limited executed closure.
+
+If you don't want this behaviour where waiting is done synchronously, and instead need rate limiting of the sort where rate limited execution may be dispatched asynchronously in another call stack, you may want to try something like [DORateLimit](https://github.com/danydev/DORateLimit) instead.
 
 ## Usage examples
 

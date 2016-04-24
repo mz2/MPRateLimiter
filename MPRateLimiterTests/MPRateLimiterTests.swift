@@ -25,10 +25,10 @@ class MPRateLimiterTests: XCTestCase {
         let rateLimiter = RateLimiter()
         
         let start = NSDate()
-        rateLimiter.execute("foo", rateLimit: 1) {
+        rateLimiter.execute(key:"foo", rateLimit: 1) {
         }
         
-        rateLimiter.execute("foo", rateLimit: 1) {
+        rateLimiter.execute(key:"foo", rateLimit: 1) {
         }
         
         let after = NSDate()
@@ -41,12 +41,12 @@ class MPRateLimiterTests: XCTestCase {
         let rateLimiter = RateLimiter()
         
         let start = NSDate()
-        rateLimiter.execute("foo", rateLimit: 1) {
+        rateLimiter.execute(key:"foo", rateLimit: 1) {
         }
         
         NSThread.sleepForTimeInterval(3.0)
         
-        rateLimiter.execute("foo", rateLimit: 1) {
+        rateLimiter.execute(key:"foo", rateLimit: 1) {
         }
         
         let after = NSDate()

@@ -9,7 +9,9 @@ A synchronous rate limiter for Swift.
 
 ```
 let limiter = RateLimiter()
-limiter.execute("foo", 0.1) {
+
+// Executes at the maximum rate of 0.1s since the previously executed closure with matching key "foo"
+limiter.execute(key:"foo", rateLimit:0.1) {
   print("bar")
 }
 ```

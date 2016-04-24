@@ -12,6 +12,8 @@ public typealias RateLimitedClosure = () throws -> Void
 
 public class RateLimiter {
     
+    public init() {}
+    
     public func execute(key key:String, rateLimit:NSTimeInterval, closure:RateLimitedClosure) rethrows {
         
         // protect access to nextAllowedExecutionTimes across threads.

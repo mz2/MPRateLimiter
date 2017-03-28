@@ -24,34 +24,34 @@ class MPRateLimiterTests: XCTestCase {
     func testWithinThrottlingLimit() {
         let rateLimiter = RateLimiter()
         
-        let start = NSDate()
+        let start = Date()
         rateLimiter.execute(key:"foo", rateLimit: 1) {
         }
         
         rateLimiter.execute(key:"foo", rateLimit: 1) {
         }
         
-        let after = NSDate()
+        let after = Date()
         
-        let timeIntervalSinceStart = after.timeIntervalSinceDate(start)
+        let timeIntervalSinceStart = after.timeIntervalSince(start)
         XCTAssert(timeIntervalSinceStart >= 1, "Unexpected time interval since start: \(timeIntervalSinceStart)")
     }
     
     func testAboveThrottlingLimit() {
         let rateLimiter = RateLimiter()
         
-        let start = NSDate()
+        let start = Date()
         rateLimiter.execute(key:"foo", rateLimit: 1) {
         }
         
-        NSThread.sleepForTimeInterval(3.0)
+        Thread.sleep(forTimeInterval: 3.0)
         
         rateLimiter.execute(key:"foo", rateLimit: 1) {
         }
         
-        let after = NSDate()
+        let after = Date()
         
-        let timeIntervalSinceStart = after.timeIntervalSinceDate(start)
+        let timeIntervalSinceStart = after.timeIntervalSince(start)
         XCTAssert(timeIntervalSinceStart >= 3.0, "Unexpected time interval since start: \(timeIntervalSinceStart)")
         
         // the time taken should not be much more than 3.0 as the throttling limit has not actually been hit in this case at all.
